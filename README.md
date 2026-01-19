@@ -330,32 +330,32 @@ This warning is **harmless** and is safely suppressed in `utils.py`.
 
 ```mermaid
 flowchart TD
-    A[RDF NT Files<br/>(Train / Test / Reference KG)]
-        --> B[Data Loader]
+    A["RDF NT Files<br>Train | Test | Reference KG"]
+        --> B["Data Loader"]
 
-    B --> C[Graph Builder<br/>(NetworkX)]
-    C --> D[Knowledge Graph]
+    B --> C["Graph Builder<br>NetworkX"]
+    C --> D["Knowledge Graph"]
 
-    D --> E[Embedding Training<br/>(RotatE, ComplEx)]
-    D --> F[Structural Features]
+    D --> E["Embedding Training<br>RotatE, ComplEx"]
+    D --> F["Structural Features"]
 
-    E --> G[Embedding-based Features]
-    F --> H[Graph-based Features]
+    E --> G["Embedding-based Features"]
+    F --> H["Graph-based Features"]
 
-    G --> I[Feature Vector]
+    G --> I["Feature Vector"]
     H --> I
 
-    I --> J[Predicate-specific Dataset Builder]
-    J --> K[Predicate-specific Models<br/>(LightGBM + Logistic Regression)]
+    I --> J["Predicate-specific Dataset Builder"]
+    J --> K["Predicate-specific Models<br>LightGBM + Logistic Regression"]
 
-    I --> L[Global Dataset Builder]
-    L --> M[Global Classifier<br/>(LightGBM)]
+    I --> L["Global Dataset Builder"]
+    L --> M["Global Classifier<br>LightGBM"]
 
-    K --> N[Prediction Module]
+    K --> N["Prediction Module"]
     M --> N
 
-    N --> O[Score Fusion<br/>(Predicate + Global + Prior)]
-    O --> P[result.ttl]
+    N --> O["Score Fusion<br>Predicate + Global + Prior"]
+    O --> P["result.ttl"]
 ```
 
 ## 🔍 Alternative: Training vs Inference Split
