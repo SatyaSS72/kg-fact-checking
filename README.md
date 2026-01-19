@@ -1,5 +1,5 @@
 
-# Fact Checking over Knowledge Graphs using Embeddings and Graph Features
+# 🧩 Fact Checking over Knowledge Graphs using Embeddings and Graph Features
 
 Fact checking over knowledge graphs using **graph structure**, **knowledge graph embeddings**, and **supervised machine learning**.
 It uses a hybrid approach combining **graph embeddings** and **predicate-wise** machine learning models.
@@ -8,15 +8,14 @@ The system predicts truth values for RDF reified statements by learning from lab
 
 ---
 
-## 📌 Overview
+## 📘 Overview
 
-This project implements a **knowledge graph fact checking system** that
-predicts the plausibility of RDF triples using:
+This project implements a **knowledge graph fact checking system** that predicts the plausibility of RDF triples using:
 
-- Knowledge graph embeddings (RotatE, ComplEx)
-- Graph-based structural features
-- Predicate-specific classifiers
-- Supervised Machine Learning (LightGBM + Logistic Regression)
+* 🧩 Knowledge graph embeddings (RotatE, ComplEx)
+* 🌐 Graph-based structural features
+* 🧠 Predicate-specific classifiers
+* ⚡ Supervised Machine Learning (LightGBM + Logistic Regression)
 
 The system is designed to generalize across predicates while preserving
 semantic structure from the reference knowledge graph and predict the **truth value of reified RDF statements** using training data and learned representations.
@@ -31,13 +30,14 @@ semantic structure from the reference knowledge graph and predict the **truth va
 - Train **predicate-wise classifiers**
 - Combine multiple signals into a final confidence score
 
+
 ### Key Ideas
 
-* **Knowledge Graph Embeddings:** RotatE and ComplEx capture relational semantics and entity similarity.
-* **Graph-Based Features:** Degree statistics, relation paths, and shortest paths model local graph structure.
-* **Predicate-Specific Learning:** Each predicate is modeled separately to capture different relational behaviors.
-* **Global Fallback Model:** A global classifier ensures robustness for rare predicates.
-* **Reference KG Augmentation:** External knowledge improves generalization.
+* 🔗 **Knowledge Graph Embeddings:** RotatE and ComplEx capture relational semantics and entity similarity.
+* 🏗️ **Graph-Based Features:** Degree statistics, relation paths, shortest paths model local graph structure.
+* 🧩 **Predicate-Specific Learning:** Each predicate is modeled separately to capture different relational behaviors.
+* 🌍 **Global Fallback Model:** A global classifier ensures robustness for rare predicates.
+* 📚 **Reference KG Augmentation:** External knowledge improves generalization.
 
 ---
 
@@ -100,7 +100,7 @@ kg-fact-checking/
 
 ---
 
-## ⚙️ Installation
+## 💻 Installation
 
 ### 1️⃣ Clone the Repository
 
@@ -150,7 +150,7 @@ pip install -r requirements.txt
 
 ---
 
-## 📦 Dataset Setup (Required)
+## 🗃️ Dataset Setup (Required)
 
 Due to size constraints and submission requirements, the dataset files are provided as a **compressed ZIP archive** and are **not tracked via GitHub LFS**.
 
@@ -214,7 +214,7 @@ If any file is missing or misplaced, the program will raise a descriptive error 
 
 ---
 
-## 📄 Dataset Preparation
+## 🗂️ Dataset Preparation
 
 Ensure the following files are present in the `data/` directory:
 
@@ -238,12 +238,12 @@ python main.py
 
 **The pipeline performs:**
 
-1. Data loading & validation
-2. Graph construction
-3. KG embedding training (RotatE & ComplEx)
-4. Feature extraction
-5. Classifier training
-6. Truth value prediction for test facts
+1. 📥 Data loading & validation
+2. 🏗️ Graph construction
+3. 🧩 KG embedding training
+4. 🌐 Feature extraction
+5. 🧠 Classifier training
+6. 🔮 Truth value prediction
 
 ---
 
@@ -285,7 +285,7 @@ Running the code multiple times on the **same machine** produces identical resul
 
 ---
 
-## ⚠️ Platform-Specific Notes
+## 🖥️ Platform-Specific Notes
 
 ### Apple Silicon (MPS)
 
@@ -296,16 +296,14 @@ This warning is **harmless** and is safely suppressed in `utils.py`.
 
 ## 🧪 Model Design Overview
 
-### 📊 Features Used
-
-#### Graph Features
+### 🌳 Graph Features
 
 * Subject out-degree
 * Object in-degree
 * Predicate-consistent path count
 * Shortest path length
 
-#### Embedding Features
+### 🔗 Embedding Features
 
 * RotatE score
 * ComplEx score
@@ -313,12 +311,12 @@ This warning is **harmless** and is safely suppressed in `utils.py`.
 * Entity cosine similarity
 * Entity L2 distance
 
-#### Reference KG Features
+### 🧩 Reference KG Features
 
 * Direct triple existence
 * Reverse triple existence
 
-#### Learning Strategy
+### 🎯 Learning Strategy
 
 * Predicate-specific classifiers for fine-grained learning
 * Global classifier as a fallback
@@ -326,39 +324,39 @@ This warning is **harmless** and is safely suppressed in `utils.py`.
 
 ---
 
-## 🏗 Architecture Diagram
+## 🏛️ Architecture Diagram
 
 ```mermaid
 flowchart TD
-    A["RDF NT Files<br>Train | Test | Reference KG"]
-        --> B["Data Loader"]
+    A["📥 RDF NT Files<br>Train | Test | Reference KG"]
+        --> B["📂 Data Loader"]
 
-    B --> C["Graph Builder<br>NetworkX"]
-    C --> D["Knowledge Graph"]
+    B --> C["🏗️ Graph Builder<br>NetworkX"]
+    C --> D["🕸️ Knowledge Graph"]
 
-    D --> E["Embedding Training<br>RotatE, ComplEx"]
-    D --> F["Structural Features"]
+    D --> E["🤖 Embedding Training<br>RotatE, ComplEx"]
+    D --> F["📊 Structural Features"]
 
-    E --> G["Embedding-based Features"]
-    F --> H["Graph-based Features"]
+    E --> G["🧬 Embedding-based Features"]
+    F --> H["🔗 Graph-based Features"]
 
-    G --> I["Feature Vector"]
+    G --> I["📈 Feature Vector"]
     H --> I
 
-    I --> J["Predicate-specific Dataset Builder"]
-    J --> K["Predicate-specific Models<br>LightGBM + Logistic Regression"]
+    I --> J["🧩 Predicate-specific Dataset Builder"]
+    J --> K["⚡ Predicate-specific Models<br>LightGBM + Logistic Regression"]
 
-    I --> L["Global Dataset Builder"]
-    L --> M["Global Classifier<br>LightGBM"]
+    I --> L["🎓 Global Dataset Builder"]
+    L --> M["🌐 Global Classifier<br>LightGBM"]
 
-    K --> N["Prediction Module"]
+    K --> N["🔮 Prediction Module"]
     M --> N
 
-    N --> O["Score Fusion<br>Predicate + Global + Prior"]
-    O --> P["result.ttl"]
+    N --> O["🎛️ Score Fusion<br>Predicate + Global + Prior"]
+    O --> P["💾 result.ttl"]
 ```
 
-## 🔍 Alternative: Training vs Inference Split
+## 🏗 Alternative: Training vs Inference Split
 
 ```mermaid
 flowchart LR
@@ -410,7 +408,7 @@ flowchart LR
 
 ---
 
-## 🧪 Experimental Notes
+## 📝 Experimental Notes
 
 * Models are trained **only on training facts**
 * Test facts are never used during training
@@ -436,7 +434,7 @@ The system was evaluated on the provided benchmark dataset and achieves competit
 ---
 
 
-## 👤 Author
+## 🧑‍🎓 Author
 
 **Satya, M.Sc. Student**<br>
 Paderborn University – Knowledge Graphs & Machine Learning
