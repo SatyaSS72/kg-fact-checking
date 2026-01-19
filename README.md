@@ -435,11 +435,13 @@ The system was evaluated on the provided benchmark dataset and achieves competit
 
 ---
 
+
 ## 👤 Author
 
 **Satya** 
 M.Sc. Student, Paderborn University
 Knowledge Graphs & Machine Learning
+
 
 ---
 
